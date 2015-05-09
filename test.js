@@ -26,4 +26,13 @@ describe('key', function() {
     expect(key(['c', 'd'])(o)).to.equal(5)
   })
 
+  it('should creating missing links when setting', function() {
+    key('e.f.g', 6)(o)
+    expect(o.e.f.g).to.equal(6)
+  })
+
+  it('should gracefully return undefined when accessing non-existent path', function() {
+    expect(key('h.i.j')(o)).to.equal(undefined)
+  })
+
 })
