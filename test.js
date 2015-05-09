@@ -21,4 +21,9 @@ describe('key', function() {
     key('c.d', 5)(o)
     expect(o.c.d).to.equal(5)
   })
+
+  it('should get value of deep key as array', function() {
+    expect(key(['c', 'd'])(o)).to.equal(5)
+  })
+
 })

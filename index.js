@@ -1,5 +1,9 @@
+var is = require('is')
+
 module.exports = function key(k, v){ 
   var set  = arguments.length > 1
+  is.arr(k) && (k = k.join('.'))
+  
   return function deep(o){
     var keys = k.split('.')
       , root = keys.shift()
