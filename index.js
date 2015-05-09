@@ -8,10 +8,10 @@ module.exports = function key(k, v){
     var keys = k.split('.')
       , root = keys.shift()
 
-    return keys.length
-         ? (set ? key(keys.join('.'), v)(o[root] ? o[root] : (o[root] = {}))
-                : key(keys.join('.'))(o[root] ? o[root] : (o[root] = {})))
-         : (set ? (o[k] = v)
-                :  o[k])
+    return !o ? undefined 
+         : keys.length ? (set ? key(keys.join('.'), v)(o[root] ? o[root] : (o[root] = {}))
+                              : key(keys.join('.'))(o[root] ? o[root] : (o[root] = {})))
+                       : (set ? (o[k] = v)
+                              :  o[k])
   }
 }

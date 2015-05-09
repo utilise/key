@@ -35,4 +35,8 @@ describe('key', function() {
     expect(key('h.i.j')(o)).to.equal(undefined)
   })
 
+  it('should fail gracefully if object undefined', function() {
+    expect(key('y')(o.z)).to.not.be.ok
+  })
+
 })
