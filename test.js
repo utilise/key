@@ -39,4 +39,12 @@ describe('key', function() {
     expect(key('y')(o.z)).to.not.be.ok
   })
 
+  it('should work with integers', function() {
+    expect(key(1)(['a','b','c'])).to.equal('b')
+  })
+
+  it('should return root if no key', function() {
+    expect(key()(['a','b','c'])).to.eql(['a','b','c'])
+  })
+
 })
