@@ -12,7 +12,7 @@ module.exports = function key(k, v){
     return !o ? undefined 
          : !k ? o
          : keys.length ? (set ? key(keys.join('.'), v)(o[root] ? o[root] : (o[root] = {}))
-                              : key(keys.join('.'))(o[root] ? o[root] : (o[root] = {})))
+                              : key(keys.join('.'))(o[root]))
                        : (set ? (o[k] = v)
                               :  o[k])
   }
