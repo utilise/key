@@ -57,7 +57,7 @@ describe('key', function() {
     var add = function(d){ return d+1 }
       , a = [1,2,3]
 
-    expect(key(2, add)(a)).to.eql(4)
+    expect(key(2, add)(a)).to.eql([1,2,4])
     expect(a).to.eql([1,2,4])
   })
 

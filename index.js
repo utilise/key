@@ -13,7 +13,7 @@ module.exports = function key(k, v){
          : !k ? o
          : keys.length ? (set ? key(keys.join('.'), v)(o[root] ? o[root] : (o[root] = {}))
                               : key(keys.join('.'))(o[root]))
-                       : (set ? (o[k] = is.fn(v) ? v(o[k]) : v)
+                       : (set ? ((o[k] = is.fn(v) ? v(o[k]) : v), o)
                               :  o[k])
   }
 }
