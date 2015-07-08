@@ -1,8 +1,11 @@
 var expect = require('chai').expect
   , key = require('./')
+  , o
 
 describe('key', function() {
-  var o = { a: 1, b: 2, c: { d: 3 } }
+  beforeEach(function(){
+    o = { a: 1, b: 2, c: { d: 3 } }
+  })
 
   it('should return value of simple key', function() {
     expect(key('a')(o)).to.equal(1)
@@ -22,8 +25,8 @@ describe('key', function() {
     expect(o.c.d).to.equal(5)
   })
 
-  it('should get value of deep key as array', function() {
-    expect(key(['c', 'd'])(o)).to.equal(5)
+  it('should get multiple values if given array', function() {
+    expect(key(['a', 'c.d'])(o)).to.eql({ a: 1, c: { d: 3 } })
   })
 
   it('should creating missing links when setting', function() {
@@ -60,5 +63,14 @@ describe('key', function() {
     expect(key(2, add)(a)).to.eql([1,2,4])
     expect(a).to.eql([1,2,4])
   })
+
+  it('should prefer dotted keys to traversing path', function() {
+    var o = { 'a.b': 3, a: { b: 5 }}
+    expect(key('a.b')(o)).to.eql(3)
+
+    key('a.b', 6)(o)
+    expect(o).to.eql({ 'a.b': 6, a: { b: 5 }})
+  })
+
 
 })
