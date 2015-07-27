@@ -1,5 +1,5 @@
-var is = require('is')
-  , str = require('str')
+var is = require('utilise.is')
+  , str = require('utilise.str')
 
 module.exports = function key(k, v){ 
   var set = arguments.length > 1
