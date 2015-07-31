@@ -64,6 +64,11 @@ describe('key', function() {
     expect(a).to.eql([1,2,4])
   })
 
+  it('should return root after deep set', function() {
+    var o = { a: { b: 'c' } }
+    expect(key('a.b', String)(o)).to.eql({ a: { b: 'c' } })
+  })
+
   it('should prefer dotted keys to traversing path', function() {
     var o = { 'a.b': 3, a: { b: 5 }}
     expect(key('a.b')(o)).to.eql(3)
