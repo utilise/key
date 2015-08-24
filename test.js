@@ -77,5 +77,9 @@ describe('key', function() {
     expect(o).to.eql({ 'a.b': 6, a: { b: 5 }})
   })
 
+  it('should not copy keys if value undefined', function() {
+    var o = { a: false, b: undefined, c: 0, d: 10 }
+    expect(key(['a', 'b', 'c', 'd', 'e'])(o)).to.eql({ a: false, c: 0, d: 10 })
+  })
 
 })
