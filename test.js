@@ -82,4 +82,14 @@ describe('key', function() {
     expect(key(['a', 'b', 'c', 'd', 'e'])(o)).to.eql({ a: false, c: 0, d: 10 })
   })
 
+  it('should provide index as implict data to functions', function() {
+    var a = [{ a: 'a'}, { a: 'b'}, { a: 'c'}]
+      , indicies = []
+      , collect = function(d, i){ indicies.push(i) }
+
+    a.map(key('a', collect))
+
+    expect(indicies).to.eql([0, 1, 2])
+  })
+
 })
