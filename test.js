@@ -51,6 +51,10 @@ describe('key', function() {
     expect(key()(['a','b','c'])).to.eql(['a','b','c'])
   })
 
+  it('should not confuse 0 with no key', function() {
+    expect(key(0)(['a','b','c'])).to.eql('a')
+  })
+
   it('should not create any paths if missing link', function() {
     var o = { a: {} }
     expect(key('a.b.c')(o)).to.eql(undefined)

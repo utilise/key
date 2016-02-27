@@ -10,7 +10,7 @@ module.exports = function key(k, v){
     var masked = {}
 
     return !o ? undefined 
-         : !k ? o
+         : !is.num(k) && !k ? o
          : is.arr(k) ? (k.map(copy), masked)
          : o[k] || !keys.length ? (set ? ((o[k] = is.fn(v) ? v(o[k], i) : v), o)
                                          :   o[k])
