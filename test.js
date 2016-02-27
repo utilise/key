@@ -1,5 +1,4 @@
-var versioned = require('versioned').default
-  , expect = require('chai').expect
+var expect = require('chai').expect
   , last = require('utilise.last')
   , key = require('./')
   , o
@@ -92,20 +91,6 @@ describe('key', function() {
     a.map(key('a', collect))
 
     expect(indicies).to.eql([0, 1, 2])
-  })
-
-  it('should commit deep changes', function() {
-    var changes = []
-      , o = versioned({ a: { b: { c: 5 }}}).on('log', function(diff){ changes.push(diff) })
-
-    key('a.b.c', 10)(o)
-    expect(o.log.length).to.eql(2)
-    expect(last(o.log).diff).to.eql({ key: 'a.b.c', value: 10, type: 'update' })
-    expect(last(o.log).value.toJS()).to.eql({ a: { b: { c: 10 }}})
-    expect(changes).to.eql([
-      { key: 'a.b.c', value: 10, type: 'update' }
-    ])
-
   })
 
 })

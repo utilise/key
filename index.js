@@ -1,5 +1,4 @@
-var commit = require('utilise.set').commit
-  , str = require('utilise.str')
+var str = require('utilise.str')
   , is = require('utilise.is')
 
 module.exports = function key(k, v){ 
@@ -9,17 +8,14 @@ module.exports = function key(k, v){
 
   return function deep(o, i){
     var masked = {}
-      , ret = !o ? undefined 
-            : !k ? o
-            : is.arr(k) ? (k.map(copy), masked)
-            : o[k] || !keys.length ? (set ? ((o[k] = is.fn(v) ? v(o[k], i) : v), o)
-                                          :   o[k])
-                                   : (set ? (key(keys.join('.'), v)(o[root] ? o[root] : (o[root] = {})), o)
-                                          : key(keys.join('.'))(o[root]))
 
-    if (set) commit(o, { type: 'update', key: k, value: key(k)(o) })
-      
-    return ret
+    return !o ? undefined 
+         : !k ? o
+         : is.arr(k) ? (k.map(copy), masked)
+         : o[k] || !keys.length ? (set ? ((o[k] = is.fn(v) ? v(o[k], i) : v), o)
+                                         :   o[k])
+                                  : (set ? (key(keys.join('.'), v)(o[root] ? o[root] : (o[root] = {})), o)
+                                         : key(keys.join('.'))(o[root]))
 
     function copy(k){
       var val = key(k)(o)
