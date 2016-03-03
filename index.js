@@ -13,9 +13,9 @@ module.exports = function key(k, v){
          : !is.num(k) && !k ? o
          : is.arr(k) ? (k.map(copy), masked)
          : o[k] || !keys.length ? (set ? ((o[k] = is.fn(v) ? v(o[k], i) : v), o)
-                                         :   o[k])
-                                  : (set ? (key(keys.join('.'), v)(o[root] ? o[root] : (o[root] = {})), o)
-                                         : key(keys.join('.'))(o[root]))
+                                       :   o[k])
+                                : (set ? (key(keys.join('.'), v)(o[root] ? o[root] : (o[root] = {})), o)
+                                       :  key(keys.join('.'))(o[root]))
 
     function copy(k){
       var val = key(k)(o)
