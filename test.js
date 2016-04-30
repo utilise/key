@@ -97,4 +97,12 @@ describe('key', function() {
     expect(indicies).to.eql([0, 1, 2])
   })
 
+  it('should allow function as key', function(){
+    expect(key(foobar)({ foo: 'foo', bar: 'bar' })).to.eql('foobar')
+
+    function foobar(d) {
+      return d.foo + d.bar
+    }
+  })
+
 })
