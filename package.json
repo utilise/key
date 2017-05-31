@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "utilise.is": "*",
-    "utilise.str": "*"
+    "utilise.str": "*",
+    "utilise.wrap": "0.0.1"
   }
 }

@@ -30,6 +30,11 @@ describe('key', function() {
     expect(key(['a', 'c.d'])(o)).to.eql({ a: 1, c: { d: 3 } })
   })
 
+  it('should copy functions', function() {
+    var fn = function(){}
+    expect(key(['fn'])({ fn: fn })).to.eql({ fn: fn })
+  })
+
   it('should creating missing links when setting', function() {
     key('e.f.g', 6)(o)
     expect(o.e.f.g).to.equal(6)
