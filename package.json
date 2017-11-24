@@ -19,7 +19,8 @@
   },
   "dependencies": {
     "utilise.is": "*",
+    "utilise.keys": "*",
     "utilise.str": "*",
-    "utilise.wrap": "0.0.1"
+    "utilise.wrap": "*"
   }
 }

@@ -56,6 +56,16 @@ describe('key', function() {
     expect(key()(['a','b','c'])).to.eql(['a','b','c'])
   })
 
+  it('should set at root', function() {
+    var bar = { bar: 'bar '}
+      , foo = { foo: 'foo' }
+      , o = key('', foo)(bar)
+
+    expect(o).to.be.equal(bar)
+    expect(o).to.be.not.equal(foo)
+    expect(o).to.be.eql({ foo: 'foo' })
+  })
+
   it('should allow getting with trailing dots', function() {
     expect(key('.a.b.')({ a: { b: 'b' }})).to.eql('b')
   })

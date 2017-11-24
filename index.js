@@ -1,4 +1,5 @@
 var wrap = require('utilise.wrap')
+  , dir = require('utilise.keys')
   , str = require('utilise.str')
   , is = require('utilise.is')
 
@@ -11,7 +12,7 @@ module.exports = function key(k, v){
     var masked = {}
     
     return !o ? undefined 
-         : !is.num(k) && !k ? o
+         : !is.num(k) && !k ? (set ? replace(o, v) : o)
          : is.arr(k) ? (k.map(copy), masked)
          : o[k] || !keys.length ? (set ? ((o[k] = is.fn(v) ? v(o[k], i) : v), o)
                                        :  (is.fn(k) ? k(o) : o[k]))
@@ -22,6 +23,12 @@ module.exports = function key(k, v){
       var val = key(k)(o)
       if (val != undefined) 
         key(k, is.fn(val) ? wrap(val) : val)(masked)
+    }
+
+    function replace(o, v) {
+      dir(o).map(function(k){ delete o[k] })
+      dir(v).map(function(k){ o[k] = v[k] })
+      return o
     }
   }
 }
