@@ -56,6 +56,14 @@ describe('key', function() {
     expect(key()(['a','b','c'])).to.eql(['a','b','c'])
   })
 
+  it('should allow getting with trailing dots', function() {
+    expect(key('.a.b.')({ a: { b: 'b' }})).to.eql('b')
+  })
+
+  it('should allow setting with trailing dots', function() {
+    expect(key('.a.b.', 'c')({ a: { b: 'b' }})).to.eql({ a: { b: 'c' }})
+  })
+
   it('should not confuse 0 with no key', function() {
     expect(key(0)(['a','b','c'])).to.eql('a')
   })

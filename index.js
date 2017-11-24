@@ -4,7 +4,7 @@ var wrap = require('utilise.wrap')
 
 module.exports = function key(k, v){ 
   var set = arguments.length > 1
-    , keys = is.fn(k) ? [] : str(k).split('.')
+    , keys = is.fn(k) ? [] : str(k).split('.').filter(Boolean)
     , root = keys.shift()
 
   return function deep(o, i){
