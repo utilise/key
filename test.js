@@ -30,6 +30,14 @@ describe('key', function() {
     expect(key(['a', 'c.d'])(o)).to.eql({ a: 1, c: { d: 3 } })
   })
 
+  it('should get multiple values with defaults if given array', function() {
+    expect(key(['b', 'c.x', 'y'], 'NULL')(o)).to.eql({ b: 2, c: { x: 'NULL' }, y: 'NULL' })
+  })
+
+  it('should get multiple values with defaults fn if given array', function() {
+    expect(key(['b', 'c.x', 'y'], d => 'NULL')(o)).to.eql({ b: 'NULL', c: { x: 'NULL' }, y: 'NULL' })
+  })
+
   it('should copy functions', function() {
     var fn = function(){}
     expect(key(['fn'])({ fn: fn })).to.eql({ fn: fn })
